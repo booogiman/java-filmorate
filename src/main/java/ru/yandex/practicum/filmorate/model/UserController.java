@@ -1,6 +1,7 @@
 package ru.yandex.practicum.filmorate.model;
 
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
 import ru.yandex.practicum.filmorate.exceptions.ValidationException;
 import ru.yandex.practicum.filmorate.model.User;
@@ -13,9 +14,9 @@ import java.time.LocalDate;
 import java.util.*;
 
 @RestController
+@Slf4j
 @RequestMapping("/users")
 public class UserController {
-    private static final Logger log = LoggerFactory.getLogger(UserController.class);
     private final Map<String, User> users = new HashMap<>();
     private int id = 1;
 
@@ -40,7 +41,7 @@ public class UserController {
     }
 
     @PutMapping
-    public User change(@Valid @RequestBody User user) {
+    public User change(@Valid @RequestBody User user) throws ValidationException {
 
         if (user.getName() == null || !user.getEmail().contains("@") || user.getEmail().isBlank()) {
             throw new ValidationException("Адрес электронной почты не может быть пустым.");

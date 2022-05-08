@@ -1,11 +1,13 @@
 package ru.yandex.practicum.filmorate.model;
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.validation.ValidationException;
+import ru.yandex.practicum.filmorate.exceptions.ValidationException;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -13,8 +15,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
+@Slf4j
 public class FilmController {
-    private static final Logger log = LoggerFactory.getLogger(FilmController.class);
     private final List<Film> films = new ArrayList<>();
     private static int id = 1;
 
@@ -24,9 +26,9 @@ public class FilmController {
     }
 
     @PostMapping(value = "/films")
-    public void create(@Valid @RequestBody Film film) {
+    public void create(@Valid @RequestBody Film film) throws ValidationException {
 
-        if (film.getName().isBlank() || film.getName() == null) {
+        if (!StringUtils.hasText(film.getName())) {
             log.info("Название фильма не может быть пустым");
             throw new ValidationException("Название фильма не может быть пустым");
         }
