@@ -7,10 +7,10 @@ import java.util.List;
 import java.util.Map;
 
 public interface FilmStorage {
-    Film create(Film film) throws RuntimeException; // Метод создающий/Добавляющий фильм в хранилище
-    Film update(Film film) throws RuntimeException; // Метод обновляющий фильм или если такого фильма нет,
+    Film create(Film film) throws Exception; // Метод создающий/Добавляющий фильм в хранилище
+    Film update(Film film) throws Exception; // Метод обновляющий фильм или если такого фильма нет,
     // создает новый фильм (Модификация)
-    void delete(Film film) throws RuntimeException; // Метод удаляющий фильм
-    List<Film> getFilms() throws RuntimeException; // Метод по получению всех фильмов
-    Film getFilmById(Long id) throws RuntimeException; // Метод по получени одного фильма
+    void delete(Film film) throws Exception; // Метод удаляющий фильм
+    List<Film> getFilms() throws Exception; // Метод по получению всех фильмов
+    Film getFilmById(Long id) throws Exception; // Метод по получени одного фильма
 }

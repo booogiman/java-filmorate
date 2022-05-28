@@ -27,7 +27,7 @@ public class UserService {
     }
 
     // Метод добавляющий пользователя в друзья
-    public void addFriend(long id, long friendId) {
+    public void addFriend(long id, long friendId) throws Exception {
         System.out.println(friendId);
         if (id < 0 || friendId < 0) {
             log.debug("Друг не добавился, ошибка с ID (пользователя или друга");
@@ -57,7 +57,7 @@ public class UserService {
 
 
     // Метод для удаления пользователя из друзей
-    public void deleteFromFriends(Long userId, Long friendId) {
+    public void deleteFromFriends(Long userId, Long friendId) throws Exception {
         if (userId < 0 || friendId < 0) {
             throw new NotFoundException("Искомый объект не найден");
         } else if (userStorage.getUserById(userId) == null || userStorage.getUserById(friendId) == null) {
@@ -83,7 +83,7 @@ public class UserService {
     }
 
     // Метод возвращающий список общих друзей
-    public List<User> allCoincideFriends(Long userId, Long friendId) {
+    public List<User> allCoincideFriends(Long userId, Long friendId) throws Exception {
         if (userId < 0 || friendId < 0) {
             log.debug("При попытке список общих друзей возникла ошибка с ID");
             throw new NotFoundException("Искомый объект не найден");
@@ -114,7 +114,7 @@ public class UserService {
     }
 
     // Метод возвращающий список друзей пользователя
-    public List<User> allFriendsOfUser(Long userId) {
+    public List<User> allFriendsOfUser(Long userId) throws Exception {
         if (userId < 0) {
             log.debug("При получении списка всех друзей пользователя возникла ошибка с ID пользователя");
             throw new NotFoundException("Искомый объект не найден");

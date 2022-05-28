@@ -31,7 +31,7 @@ public class FilmService {
     }
 
     // Метод по добавлению лайка
-    public void addLike(Long filmId, Long userId) {
+    public void addLike(Long filmId, Long userId) throws Exception {
         if (filmId < 0 || userId < 0) {
             log.debug("При добавлении лайка возникла ошибка с ID");
             throw new NotFoundException("Искомый объект не найден");
@@ -58,7 +58,7 @@ public class FilmService {
     }
 
     // Метод по удалению лайка
-    public void deleteLike(Long filmId, Long userId) {
+    public void deleteLike(Long filmId, Long userId) throws Exception {
         if (filmId < 0 || userId < 0) {
             log.debug("При удалении лайка возникла ошибка с ID");
             throw new NotFoundException("Искомый объект не найден");
@@ -95,7 +95,7 @@ public class FilmService {
                     .sorted((o1, o2) -> o2.getSetWithLike().size() - o1.getSetWithLike().size())
                     .limit(amount)
                     .collect(Collectors.toList());
-        } catch (RuntimeException e) {
+        } catch (Exception e) {
             throw new RuntimeException("Внутренняя ошибка сервера");
         }
     }
