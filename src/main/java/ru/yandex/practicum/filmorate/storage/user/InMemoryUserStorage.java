@@ -19,7 +19,7 @@ public class InMemoryUserStorage implements UserStorage {
 
     // Метод по созданию/добавлению нового пользователя
     @Override
-    public User create(User user) {
+    public User create(User user) throws NotFoundException {
         if (user == null) {
             log.debug("При попытке создать нового пользователя произошла ошибка с NULL");
             throw new NotFoundException("Искомый объект не найден");
@@ -43,7 +43,7 @@ public class InMemoryUserStorage implements UserStorage {
 
     // Метод, который обновляет информацию по существующему пользователю
     @Override
-    public User update(User user) {
+    public User update(User user) throws ValidationException, NotFoundException {
         if (user == null) {
             log.debug("При обновлении пользователя передали значение Null");
             throw new ValidationException("Ошибка валидации");
@@ -65,7 +65,7 @@ public class InMemoryUserStorage implements UserStorage {
 
     // Метод, который удаляет пользователя
     @Override
-    public void delete(User user) {
+    public void delete(User user) throws NotFoundException, ValidationException {
         if (user == null) {
             log.debug("При удалении пользователя возникла ошибка с NULL");
             throw new NotFoundException("Искомый объект не найден");
@@ -98,7 +98,7 @@ public class InMemoryUserStorage implements UserStorage {
 
     // Метод возвращающий пользователя одного по ID
     @Override
-    public User getUserById(long id) {
+    public User getUserById(long id) throws NotFoundException, ValidationException {
         if (id < 0) {
             log.debug("При попытке вернуть пользователя возникла ошибка с ID");
             throw new NotFoundException("Искомый объект не найден");

@@ -19,7 +19,7 @@ public class InMemoryFilmStorage implements FilmStorage {
 
     // Метод, который добавляет новый фильм
     @Override
-    public Film create(Film film) {
+    public Film create(Film film) throws NotFoundException {
         if (film == null) {
             log.debug("При попытке создать новый фильм произошла ошибка с NULL");
             throw new NotFoundException("Искомый объект не найден");
@@ -39,7 +39,7 @@ public class InMemoryFilmStorage implements FilmStorage {
 
     // Метод, который обновляет информацию по существующему фильму
     @Override
-    public Film update(Film film) {
+    public Film update(Film film) throws ValidationException, NotFoundException {
         if (film == null) {
             log.debug("При обновлении фильма передали значение Null");
             throw new ValidationException("Ошибка валидации");
@@ -62,7 +62,7 @@ public class InMemoryFilmStorage implements FilmStorage {
 
     // Метод удаляющий фильм
     @Override
-    public void delete(Film film) {
+    public void delete(Film film) throws NotFoundException, ValidationException {
         if (film == null) {
             log.debug("При удаления фильма возникла ошибка с NULL");
             throw new NotFoundException("Искомый объект не найден");
@@ -95,7 +95,7 @@ public class InMemoryFilmStorage implements FilmStorage {
 
     // Метод возвращающий фильма одного по ID
     @Override
-    public Film getFilmById(Long id) {
+    public Film getFilmById(Long id) throws NotFoundException, ValidationException {
         if (id < 0) {
             log.debug("При попытке вернуть фильм возникла ошибка с ID");
             throw new NotFoundException("Искомый объект не найден");
