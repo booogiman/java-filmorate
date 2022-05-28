@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "e337606f-5df6-47d0-9784-7fa89c1b51fe",
+		"_postman_id": "0268e365-0557-4a60-9925-4f6b9f993257",
 		"name": "API Test Sprint 1",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -100,8 +100,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 500\", function () {\r",
-									"    pm.response.to.have.status(500);\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -423,8 +423,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 500\", function () {\r",
-									"    pm.response.to.have.status(500);\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -445,7 +445,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"\",\n  \"description\": \"\",\n  \"releaseDate\": \"1900-03-25\",\n  \"duration\": -100\n}",
+							"raw": "{\n  \"name\": \"fdsfs\",\n  \"description\": \"fdsfds\",\n  \"releaseDate\": \"1900-03-25\",\n  \"duration\": -100\n}",
 							"options": {
 								"raw": {
 									"language": "json"
